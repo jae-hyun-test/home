@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <title>My Investment | 주식 투자 대시보드</title>
+  <link rel="stylesheet" href="./assets/style.css">
+  <script src="./assets/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">M</span><span>MY<span class="brand-muted">INVEST</span></span></a>
+      <div class="nav-label">WORKSPACE</div>
+      <a class="nav-item active" href="#overview"><span>▦</span> 대시보드</a>
+      <a class="nav-item" href="#holdings"><span>◫</span> 보유 종목</a>
+      <a class="nav-item" href="#allocation"><span>◉</span> 자산 배분</a>
+      <div class="sidebar-bottom"><div class="status-dot"></div><span>개인 투자 공간</span><small>v0.1</small></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div><div class="eyebrow">MY WORKSPACE / OVERVIEW</div><h1>투자 대시보드</h1></div><div class="top-actions"><span class="demo-pill">● DEMO DATA</span><button class="ghost-btn" id="resetBtn" title="초기 예시 데이터로 복원">초기화 ↺</button></div></header>
+      <section class="welcome-row"><div><h2>나의 투자 현황</h2><p>보유 종목과 투자 성과를 한눈에 확인하세요.</p></div><div class="updated">마지막 업데이트 <strong id="updatedAt">-</strong></div></section>
+      <section class="summary-grid" id="overview">
+        <article class="metric-card primary"><div class="metric-label">총 평가금액 <span>₩</span></div><div class="metric-value" id="totalValue">₩0</div><div class="metric-foot"><span class="metric-chip" id="totalReturnRate">+0.00%</span><span id="totalReturn">총 손익 ₩0</span></div><div class="sparkline">↗</div></article>
+        <article class="metric-card"><div class="metric-label">총 투자 원금</div><div class="metric-value" id="totalCost">₩0</div><div class="metric-note">보유 수량 × 평균 매수가</div></article>
+        <article class="metric-card"><div class="metric-label">평가 손익</div><div class="metric-value" id="profitValue">₩0</div><div class="metric-note">현재 평가금액 기준</div></article>
+        <article class="metric-card"><div class="metric-label">보유 종목</div><div class="metric-value" id="holdingCount">0<span class="unit"> 종목</span></div><div class="metric-note">등록된 종목 수</div></article>
+      </section>
+      <section class="content-grid">
+        <article class="panel chart-panel" id="allocation"><div class="panel-heading"><div><h3>포트폴리오 구성</h3><p>종목별 평가금액 비중</p></div><span class="panel-tag">ASSET MIX</span></div><div class="allocation-content"><div class="donut-wrap"><div class="donut" id="donut"><div class="donut-center"><strong id="donutTotal">₩0</strong><span>총 평가금액</span></div></div></div><div class="legend" id="legend"></div></div></article>
+        <article class="panel insight-panel"><div class="panel-heading"><div><h3>투자 요약</h3><p>현재 등록된 종목 기준</p></div><span class="panel-tag">INSIGHTS</span></div><div class="insight-list"><div class="insight-row"><span class="insight-icon blue">↗</span><div><strong id="bestHolding">-</strong><small>수익률 가장 높은 종목</small></div></div><div class="insight-row"><span class="insight-icon amber">◎</span><div><strong id="largestHolding">-</strong><small>비중이 가장 큰 종목</small></div></div><div class="insight-row"><span class="insight-icon green">＋</span><div><strong id="positiveCount">0개</strong><small>수익 구간 종목</small></div></div></div><div class="notice">이 화면은 직접 입력한 예시 데이터를 사용합니다. 실제 시세와 연동되어 있지 않습니다.</div></article>
+      </section>
+      <section class="panel holdings-panel" id="holdings"><div class="panel-heading holdings-heading"><div><h3>보유 종목</h3><p>수량과 평균 매수가를 관리하세요.</p></div><button class="primary-btn" id="addBtn">＋ 종목 추가</button></div>
+        <div class="table-wrap"><table><thead><tr><th>종목</th><th>보유 수량</th><th>평균 매수가</th><th>현재가</th><th>평가금액</th><th>손익률</th><th></th></tr></thead><tbody id="holdingsBody"></tbody></table></div>
+        <div class="table-foot"><span id="tableSummary">0개 종목</span><span>가격·수량은 직접 수정할 수 있습니다.</span></div>
+      </section>
+      <footer>MY INVESTMENT DASHBOARD <span>개인 투자 기록용 · 투자 판단의 참고 자료</span></footer>
+    </main>
+  </div>
+  <dialog id="holdingDialog"><form id="holdingForm" method="dialog"><div class="dialog-head"><div><span class="eyebrow">PORTFOLIO EDITOR</span><h2 id="dialogTitle">종목 추가</h2></div><button type="button" class="close-btn" id="closeDialog">×</button></div><input type="hidden" id="editId"><label>종목명 / 티커<input id="symbol" required maxlength="18" placeholder="예: AAPL"></label><div class="form-row"><label>보유 수량<input id="quantity" type="number" min="0" step="any" required placeholder="10"></label><label>평균 매수가 (원)<input id="avgPrice" type="number" min="0" step="any" required placeholder="150000"></label></div><label>현재가 (원)<input id="currentPrice" type="number" min="0" step="any" required placeholder="165000"></label><div class="dialog-actions"><button type="button" class="ghost-btn" id="cancelDialog">취소</button><button class="primary-btn" type="submit">저장하기</button></div></form></dialog>
+</body></html>
